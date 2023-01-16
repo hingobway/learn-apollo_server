@@ -15,7 +15,9 @@ import resolvers from './src/schema/resolvers.js';
 import ProjectSource from './src/sources/ProjectSource.js';
 import ClientSource from './src/sources/ClientSource.js';
 
-dotenv.config();
+if (process.env.IS_OFFLINE) {
+  dotenv.config();
+}
 
 const app = express();
 
