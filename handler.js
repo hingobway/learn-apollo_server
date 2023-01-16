@@ -2,7 +2,6 @@ import serverless from 'serverless-http';
 
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
@@ -16,7 +15,7 @@ import ProjectSource from './src/sources/ProjectSource.js';
 import ClientSource from './src/sources/ClientSource.js';
 
 if (process.env.IS_OFFLINE) {
-  dotenv.config();
+  require('dotenv').config();
 }
 
 const app = express();
