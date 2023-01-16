@@ -22,7 +22,15 @@ const resolvers = {
       args.status = args.status || 'NEW';
       return project.addProject(args);
     },
-    updateProject: (_, args, { sources: { project } }) => {
+    updateProject: async (_, args, { sources: { project, client } }) => {
+      if (args.clientId) {
+        const c = await client.getClient(args.clientId);
+        if (!c)
+          throw new GraphQLError(`That client couldn't be found.`, {
+            extensions: { code: 'RELATIONSHIP_FAILURE' },
+          });
+      }
+
       const id = args.id;
       delete args.id;
       return project.updateProject(id, args);

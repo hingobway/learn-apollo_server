@@ -16,6 +16,7 @@ provider:
             - dynamodb:PutItem
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
+            - dynamodb:BatchGetItem
           Resource:
             - '*'
   environment:
