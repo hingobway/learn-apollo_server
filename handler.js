@@ -23,6 +23,7 @@ const app = express();
 const server = new ApolloServer({
   typeDefs: [types, queries],
   resolvers,
+  nodeEnv: process.env.IS_OFFLINE ? 'development' : 'production',
 });
 await server.start();
 
