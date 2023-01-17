@@ -2,6 +2,7 @@
   "name": "learn-apollo-v2",
   "version": "1.0.0",
   "description": "",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "nodemon --exec \"serverless offline start\"",

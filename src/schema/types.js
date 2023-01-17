@@ -6,6 +6,7 @@ const types = gql`
     email: String!
     name: String!
     phone: String
+    projects: [Project!]
   }
 
   type Project {

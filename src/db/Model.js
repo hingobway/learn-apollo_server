@@ -69,6 +69,15 @@ class Model {
       id,
     });
   }
+
+  async find(query) {
+    return await find({
+      table: this.table,
+      type: this.type,
+      query,
+      index: `type-${Object.keys(query)[0]}`,
+    });
+  }
 }
 export default Model;
 
@@ -126,6 +135,14 @@ const update = async ({ table, type, id, add, remove }) => {
 const del = async ({ table, type, id }) => {
   try {
     return { data: await db.delete(table, { id, type }) };
+  } catch (error) {
+    return { error };
+  }
+};
+const find = async ({ table, index, type, query }) => {
+  query.type = type;
+  try {
+    return { data: await db.query(table, { index, query }) };
   } catch (error) {
     return { error };
   }

@@ -15,7 +15,7 @@ import ProjectSource from './src/sources/ProjectSource.js';
 import ClientSource from './src/sources/ClientSource.js';
 
 if (process.env.IS_OFFLINE) {
-  require('dotenv').config();
+  (await import('dotenv')).config();
 }
 
 const app = express();

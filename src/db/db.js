@@ -83,7 +83,7 @@ methods.find = async (TableName, { key, value, include: include_ }) => {
   ).Items;
 };
 
-methods.query = async (TableName, { query, include: include_ }) => {
+methods.query = async (TableName, { query, index, include: include_ }) => {
   const include = Object.assign([], include_) || [];
   const queryIs = Object.keys(query).map((it) => {
     let keyindex;
@@ -119,6 +119,7 @@ methods.query = async (TableName, { query, include: include_ }) => {
       .map((it, i) => `${it} = ${Object.keys(values)[i]}`)
       .join(' AND '),
   };
+  if (index) params.IndexName = index;
 
   try {
     return (await db.send(new QueryCommand(params))).Items;

@@ -43,6 +43,10 @@ const resolvers = {
     client: ({ clientId }, _, { sources: { client } }) =>
       client.getClient(clientId),
   },
+  Client: {
+    projects: async ({ id }, _, { sources: { project } }) =>
+      project.findProjectsByClient(id),
+  },
 };
 
 export default resolvers;

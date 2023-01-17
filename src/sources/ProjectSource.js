@@ -27,6 +27,11 @@ class ProjectSource extends Model {
     if (error) throw error;
     return data;
   }
+  async findProjectsByClient(clientId) {
+    const { data, error } = await this.find({ clientId });
+    if (error) throw error;
+    return data;
+  }
 
   async addProject(client) {
     const { data, error } = await this.create(client);
